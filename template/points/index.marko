@@ -1,0 +1,109 @@
+<!-- <!doctype html>
+<html> -->
+class {
+    onCreate() {
+        this.state = { count: 1 };
+    }
+}
+<header>
+	<link type="text/css" rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Parisienne&display=swap" rel="stylesheet">
+<style>
+* {
+	box-sizing: border-box;
+}
+span{
+  font-family: 'Parisienne', cursive;
+  font-size: 40px;
+}
+body {
+	font-family: 'Nunito', sans-serif;
+	color:white;
+	background-image: url("../sfondo.jpg");
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top:1%
+}
+.columnleft{
+	flex: 20%;
+  padding: 10px;
+}
+.columncenter{
+	flex: 60%;
+}
+.columnright{
+  flex: 20%;
+  margin: auto;
+}
+.column{
+	flex:50%
+}
+img{
+	height: 250px;
+	border-radius: 10px;
+	margin: 5px;
+}
+.line-break {
+  width: 100%;
+}
+</style>
+</header>
+<body align="center" >
+<div class="row">
+
+  <div class="columnleft">
+<h1>ipse</h1>
+	<for|player| of=data.players>
+    <div style="font-size:24px">
+      ${player.points} ${player.nickname}
+    </div>
+  </for>
+  <br/>
+  <br/>
+  <br/>
+<button onClick="window.location.reload(true);">refresh points</button>
+</div>
+<div class="columncenter">
+
+  <div class="line-break">
+    <if(data.inspiration)>
+    <span>${data.inspiration}</span>
+  </if>
+  <else>
+    <button onClick="window.location.reload(true);">Inspiration</button>
+  </else>
+  </div>
+
+<div align="center" class="row" style="padding-top:0">
+<if(!data.playingCards || data.playingCards.length == 0)>
+  <div>
+    <p>wait for the other players to vote and then press this button</p>
+  <button onClick="window.location.reload(true);">refresh cards</button>
+</div>
+</if>
+<else>
+    <for|card| of=data.playingCards>
+    	<div>
+    	${state.count}<br/><img src=card>
+    </div>
+    <if((state.count % 4)==0)>
+    <div class="line-break"></div>
+    </if>
+      $ state.count++
+    </for>
+  </else>
+</div>
+</div>
+<div class="columnright">
+
+  $ const url= "/newMatch?id=" + data.player.id
+  <a href=`${url}`><button>newMatch</button></a>
+
+</div>
+
+
+</div>
+</body>

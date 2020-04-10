@@ -1,0 +1,91 @@
+<!-- <!doctype html>
+<html> -->
+class {
+    onCreate() {
+        this.state = { count: 1 };
+    }
+}
+<header>
+	<link type="text/css" rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
+<style>
+* {
+	box-sizing: border-box;
+}
+body {
+	font-family: 'Nunito', sans-serif;
+	color:white;
+	background-image: url("../sfondo.jpg");
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top:1%
+}
+.columnleft{
+	flex: 20%;
+  padding: 10px;
+}
+.columncenter{
+	flex: 50%;
+}
+.columnright{
+  flex: 30%;
+  margin: auto;
+}
+.column{
+	flex:50%
+}
+img{
+	height: 250px;
+	border-radius: 10px;
+	margin: 5px;
+}
+.line-break {
+  width: 100%;
+}
+</style>
+</header>
+<body align="center" >
+<div class="row">
+	<div class="columnleft">
+	<h1>ipse</h1>
+
+	<for|player| of=data.players>
+    <div style="font-size:24px">
+      ${player.points} ${player.nickname}
+    </div>
+  </for>
+</div>
+<div class="columncenter">
+<div align="center" class="row" style="padding-top:0">
+<for|card| of=data.player.cards>
+	<div>
+	${state.count}<br/><img src=card>
+</div>
+<if(state.count==3)>
+<div class="line-break"></div>
+</if>
+  $ state.count++
+
+</for>
+</div>
+</div>
+<div class="columnright">
+<form entype="text/plain" method="POST" action="/match" align="center">
+
+			<label>choose a card</label><br/>
+			<input type="text" name="card" placeholder="n" maxlength="1" size="1">
+      <br/><br/>
+			<label>inspiration</label>
+      <br/>
+			<input type="textarea" name="inspiration" placeholder="inspiration" maxlength="50" size="50">
+      <input type="hidden" name="id" value=`${data.player.id}`>
+      <br/><br/><input type="submit" value="confirm">
+
+</form>
+</div>
+
+</div>
+</body>

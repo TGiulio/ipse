@@ -1,0 +1,20 @@
+{
+  "name": "ipse",
+  "version": "0.0.0",
+  "description": "dixit",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Giulio Toldo",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "1.19.0",
+    "express": "4.17.1",
+    "marko": "4.19.8",
+    "mongodb": "3.5.5",
+    "random": "2.2.0",
+    "uuid": "7.0.3"
+  }
+}
