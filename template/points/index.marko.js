@@ -77,7 +77,7 @@ function render(input, out, __component, component, state) {
 
   out.w("</div></div><div class=\"columnright\">");
 
-  const url= "/newMatch?id=" + data.player.id
+  const url= "/newMatch?id=" + data.player.id;
 
   out.w("<a" +
     marko_attr("href", "" + url) +

@@ -34,7 +34,7 @@ function render(input, out, __component, component, state) {
 
   out.w("<br><br><button onClick=\"window.location.reload(true);\">Refresh</button><br>");
 
-  const url= "/match?id=" + data.player.id
+  const url= "/match?id=" + data.id;
 
   out.w("<a" +
     marko_attr("href", "" + url) +
