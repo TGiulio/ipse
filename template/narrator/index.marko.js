@@ -36,9 +36,17 @@ function render(input, out, __component, component, state) {
 
     out.w("<div style=\"font-size:24px\">" +
       marko_escapeXml(player.points) +
-      " " +
-      marko_escapeXml(player.nickname) +
-      "</div>");
+      " ");
+
+    if (player.narrator) {
+      out.w("<b>" +
+        marko_escapeXml(player.nickname) +
+        "</b>");
+    } else {
+      out.w(marko_escapeXml(player.nickname));
+    }
+
+    out.w("</div>");
   });
 
   out.w("</div><div class=\"columncenter\"><div align=\"center\" class=\"row\" style=\"padding-top:0\">");
@@ -67,7 +75,7 @@ function render(input, out, __component, component, state) {
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "29");
+  await_reorderer_tag({}, out, __component, "30");
 
   out.w("</body>");
 }

@@ -58,7 +58,7 @@ img{
 <h1>ipse</h1>
 	<for|player| of=data.players>
     <div style="font-size:24px">
-      ${player.points} ${player.nickname}
+      ${player.points} <if(player.narrator)><b>${player.nickname}</b></if><else>${player.nickname}</else>
     </div>
   </for>
 </div>
