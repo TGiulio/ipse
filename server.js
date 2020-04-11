@@ -69,7 +69,7 @@ app.post('/', (req, res)=>{
       await db.collection('players').insertOne({
         id: await uuid.v4(),
         nickname: req.body.nickname,
-        cards: await cardsAssign(6),
+        cards: [],
         points:0,
         vote:"",
         narrator: false,
@@ -78,9 +78,9 @@ app.post('/', (req, res)=>{
         await db.collection('players').updateOne({nickname: req.body.nickname}, {$set:{narrator: true}});
       }
       let player = await db.collection('players').findOne({nickname: req.body.nickname})
-      const query= querystring.stringify({"id": player.id})
+      //const query= querystring.stringify({"id": player.id})
       console.log('new player inserted: ' + req.body.nickname);
-      res.redirect('/room?' + query);
+      res.redirect('/room?id=' + player.id);
 
     }else{
     res.redirect('/');
@@ -98,8 +98,9 @@ app.get('/room', (req, res)=>{
     if(await !req.query.id || db.collection('players').countDocuments({id: req.query.id})==0){
       res.redirect('/')
     }else{
-    let players = await (db.collection('players').find({})).toArray();
-    res.marko(room, {players:players, id: req.query.id });
+      await db.collection('players').updateOne({id: req.query.id}, {$set: {cards: await cardsAssign(6), points: 0}})
+      let players = await (db.collection('players').find({})).toArray();
+      res.marko(room, {players:players, id: req.query.id });
     }
   } catch (err) {
     console.log(err.stack);
@@ -252,11 +253,22 @@ app.get('/newMatch', async (req,res)=>{
         await db.collection('players').updateOne({}, {$set: {narrator:true}})
       }
     }
-    player = await db.collection('players').findOne({id: req.query.id})
-    if (player.cards.length<6){
-      await db.collection('players').updateOne({id: req.query.id}, {$push:{cards: await newCard()}})
+    let usedCards = await db.collection('match').findOne({name: "usedCards"})
+    if(await usedCards.value.length<(6*players.length)){
+      await db.collection('players').updateOne({id: req.query.id}, {$set: {cards:[]}})
+      res.redirect('/room?id=' + req.query.id)
+    }else if(await db.collection('players').countDocuments({points: {$gte: 30}})>0){
+      await db.collection('match').updateOne({name:"usedCards"}, {$set: {value:[]}})
+      await db.collection('players').updateOne({id: req.query.id}, {$set: {cards:[]}})
+      res.redirect('/room?id=' + req.query.id)
+    }else{
+      player = await db.collection('players').findOne({id: req.query.id})
+      if (player.cards.length<6){
+        await db.collection('players').updateOne({id: req.query.id}, {$push:{cards: await newCard()}})
+        res.redirect('/match?id='+ player.id)
     }
-    res.redirect('/match?id='+ player.id)
+
+  }
   }catch(err){
     console.log(err.stack);
   }
