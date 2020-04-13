@@ -28,8 +28,16 @@ const newCard= async function (){
   const db = client.db('ipse');
   let number;
   let ex;
+  let usedCards=await db.collection('match').find({name:'usedCards'})
+  if(await usedCards.value.length>=94){
+    await db.collection('match').updateOne({name:'usedCards'}, {$set: {value: []}})
+    let players = await db.collection('players').find({})
+    for(let i=0;i<players.length;i++){
+      await db.collection('match').updateOne({name:'usedCards'}, {$push: {value: {$each: players[i].cards}}})
+    }
+  }
   do{
-    number= await "../cards/" +random.int(1,100) + ".jpg";
+    number= await "../cards/" + random.int(1,100) + ".jpg";
     if(await db.collection('match').countDocuments({value: {$in: [number]}})>0){
       ex=true;
     }
