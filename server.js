@@ -28,8 +28,15 @@ const newCard= async function (){
   const db = client.db('ipse');
   let number;
   let ex;
-  let usedCards=await db.collection('match').find({name:'usedCards'})
-  
+  let usedCards=await db.collection('match').findOne({name:'usedCards'})
+  if(await usedCards.value.length>=94){
+    console.log('rinnovo mazzo');
+    await db.collection('match').updateOne({name:'usedCards'}, {$set: {value: []}})
+    let players = await db.collection('players').find({}).toArray()
+    for(let i=0;i<players.length;i++){
+      await db.collection('match').updateOne({name:'usedCards'}, {$push: {value: {$each: players[i].cards}}})
+    }
+  }
   do{
     number= await "../cards/" + random.int(1,100) + ".jpg";
     if(await db.collection('match').countDocuments({value: {$in: [number]}})>0){
@@ -256,12 +263,11 @@ app.get('/newMatch', async (req,res)=>{
       }
     }
     let usedCards = await db.collection('match').findOne({name: "usedCards"})
-    if(await usedCards.value.length<(6*players.length)){
-      await db.collection('players').updateOne({id: req.query.id}, {$set: {cards:[]}})
+    if(await player.cards.length==0){
       res.redirect('/room?id=' + req.query.id)
     }else if(await db.collection('players').countDocuments({points: {$gte: 30}})>0){
       await db.collection('match').updateOne({name:"usedCards"}, {$set: {value:[]}})
-      await db.collection('players').updateOne({id: req.query.id}, {$set: {cards:[]}})
+      await db.collection('players').updateMany({}, {$set: {cards:[]}})
       res.redirect('/room?id=' + req.query.id)
     }else{
       player = await db.collection('players').findOne({id: req.query.id})
