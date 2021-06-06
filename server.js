@@ -221,7 +221,7 @@ app.post('/game', (req, res)=>{
     let players = await (db.collection('players').find({})).toArray();
     playingCards = await db.collection('match').findOne({name: 'playingCards'});
     if(playingCards.votes.length==players.length-1){ // se tutti hanno votato
-      if(await playingCards.votes.indexOf(playingCards.winning)==-1 || await playingCards.votes.every((val, i, arr)=> val==arr[0])){ // se tutti hanno votato quella corretta
+      if(await playingCards.votes.indexOf(playingCards.winning)==-1 || await playingCards.votes.every((val, i, arr)=> val==arr[0])){ // se tutti o nessuno ha votato quella corretta
         await db.collection('players').updateMany({narrator:false}, {$inc: {points: 2}}) // do 2 punti a tutti tranne che al narratore
       }
       else{
