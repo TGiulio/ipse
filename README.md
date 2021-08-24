@@ -23,3 +23,6 @@ Once everyone has the inspiration all players must individually choose a card of
 The last part of the match is about guessing which card was choosen by the narrator, you gain points if you guess correctly and if someone vote your card instead of the right one
 
 ![game](https://i.ibb.co/W5JnyY5/ipse-game-small.png)
+
+
+04/2020
