@@ -24,16 +24,16 @@ The last part of the match is about guessing which card was choosen by the narra
 
 ![game](https://i.ibb.co/W5JnyY5/ipse-game-small.png)
 
-## Dependancies
+## Dependencies
 The backend is written in Node.js and uses Express 4.17 with a body-parser middleware. The database is MongoDB and in the application I use mongodb@3.5.5. The frontend is made using Marko@4.19 just because it was the fastest framework I was able to learn. I tried to use React and Vue but I couldn't do what I needed, with Marko.js it was relatively easy (I also have a friend named Marko so... :D). The application uses random@2.2 for the cards drawing and uuid@7.0 for generating the IDs of the players.
 
 ## Building and deployment
 
 The app is really simple,
-`git clone https://github.com/TGiulio/ipse.git` 
+```git clone https://github.com/TGiulio/ipse.git```
 and
-`npm install`
-should do just fine
+```npm install```
+should do just fine.
 
 You'll need to configure you own MongoDB database with 2 collection:
 - players
@@ -41,23 +41,25 @@ You'll need to configure you own MongoDB database with 2 collection:
 
 you can leave the players collection empty. In the match collection you need to add 3 objects:
 
+```
 {
   "name": "playingCards",
   "winning":"",
   "value":[],
   "votes": []
-  }
+ }
   
-  {
+ {
   "name": "inspiration",
   "value":""
-  }
+ }
   
-  {
+ {
   "name": "usedCards",
   "value":[]
-  }
+ }
+ ```
   
-  Once you have your database ready you can extract your connection URL and add it to the server.js file as "dburl" string variable.
+Once you have your database ready you can extract your connection URL and add it to the server.js file as "dburl" string variable.
 
 01/2022
