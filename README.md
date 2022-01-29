@@ -1,7 +1,7 @@
 # ipse
-ipse is a very simple version of the Dixit game that I made during the lockdown to play with my friends.
+ipse is a very simple version of the Dixit game that I made during the lockdown in February and March 2020 to play with my friends.
 
-It is my first "full-stack" application, even if it's really simple, and it was the first time I used a database.
+It is my first "full-stack" application written in Node.js, even if it's really simple, and it was the first time I used a MongoDB database. It's really a basic application, it does not support account management or even
 
 The Dixit game is not my creation and I don't own any copyright of the game or the cards shown below. Dixit is an [Asmodee](https://www.asmodee.com) board game.
 
@@ -24,5 +24,39 @@ The last part of the match is about guessing which card was choosen by the narra
 
 ![game](https://i.ibb.co/W5JnyY5/ipse-game-small.png)
 
+## Dependancies
+The backend is written in Node.js and uses Express 4.17 with a body-parser middleware. The database is MongoDB and in the application I use mongodb@3.5.5. The frontend is made using Marko@4.19 just because it was the fastest framework I was able to learn. I tried to use React and Vue but I couldn't do what I needed, with Marko.js it was relatively easy (I also have a friend named Marko so... :D). The application uses random@2.2 for the cards drawing and uuid@7.0 for generating the IDs of the players.
 
-04/2020
+## Building and deployment
+
+The app is really simple,
+`git clone https://github.com/TGiulio/ipse.git` 
+and
+`npm install`
+should do just fine
+
+You'll need to configure you own MongoDB database with 2 collection:
+- players
+- match
+you can leave the players collection empty. In the match collection you need to add 3 objects:
+
+`{
+  "name": "playingCards",
+  "winning":"",
+  "value":[],
+  "votes": []
+  }
+  
+  {
+  "name": "inspiration",
+  "value":""
+  }
+  
+  {
+  "name": "usedCards",
+  "value":[]
+  }`
+  
+  Once you have your database ready you can extract your connection URL and add it to the server.js file as "dburl" string variable.
+
+01/2022
