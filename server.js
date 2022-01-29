@@ -19,7 +19,7 @@ const narrator = require(path.join(__dirname, 'template', 'narrator')); // pagin
 const app=express();
 //connect to the database
 const MongoClient=mongodb.MongoClient;
-const dburl='mongodb+srv://ipse:xxxxx@ipse-bniic.mongodb.net/test?retryWrites=true&w=majority'
+const dburl='mongodb+srv://ipse:dixit@ipse-bniic.mongodb.net/test?retryWrites=true&w=majority'
 const client = new MongoClient(dburl, { useUnifiedTopology: true });
 client.connect((err)=> console.log(err))
 
