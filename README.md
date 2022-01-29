@@ -38,9 +38,10 @@ should do just fine
 You'll need to configure you own MongoDB database with 2 collection:
 - players
 - match
+
 you can leave the players collection empty. In the match collection you need to add 3 objects:
 
-`{
+{
   "name": "playingCards",
   "winning":"",
   "value":[],
@@ -55,7 +56,7 @@ you can leave the players collection empty. In the match collection you need to 
   {
   "name": "usedCards",
   "value":[]
-  }`
+  }
   
   Once you have your database ready you can extract your connection URL and add it to the server.js file as "dburl" string variable.
 
