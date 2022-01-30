@@ -247,7 +247,7 @@ app.post('/game', (req, res)=>{
         await db.collection('players').updateOne({narrator:true}, {$inc: {points: 3}}) // do 3 punti al narratore | gives 3 points to the narrator
         for(let i=0;i<players.length;i++){ // scorro i vari voti, | scanning the votes
           if(players[i].vote==playingCards.winning){
-            await db.collection('players').updateOne({id: players[i].id}, {$inc: {points: 3}}) // do 2 punti a chi ha votato la carta giusta, | gives 2 point to whom voted the right card
+            await db.collection('players').updateOne({id: players[i].id}, {$inc: {points: 2}}) // do 2 punti a chi ha votato la carta giusta, | gives 2 point to whom voted the right card
           }else{
             await db.collection('players').updateOne({cards: {$in: [players[i].vote]}}, {$inc: {points: 1}}) // altrimenti do 1 punto al possessore della carta votata | else, gives 1 point to the owner of the voted card
           }
