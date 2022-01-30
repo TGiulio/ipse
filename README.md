@@ -1,7 +1,7 @@
 # ipse
 ipse is a very simple version of the Dixit game that I made during the lockdown in February and March 2020 to play with my friends.
 
-It is my first "full-stack" application written in Node.js, even if it's really simple, and it was the first time I used a MongoDB database. It's really a basic application, it does not support account management or even
+It is my first "full-stack" application written in Node.js, even if it's really simple, and it was the first time I used a MongoDB database. It's really a basic application, it does not support account management, the cleaning of the player collection must be done manually. It does not have data validation of any sort, if a field is empty the application will go on anyway. At the time it was mostly a proof of concept, to learn Node.js and his environment, and to play with my friends.
 
 The Dixit game is not my creation and I don't own any copyright of the game or the cards shown below. Dixit is an [Asmodee](https://www.asmodee.com) board game.
 
@@ -25,7 +25,7 @@ The last part of the match is about guessing which card was choosen by the narra
 ![game](https://i.ibb.co/W5JnyY5/ipse-game-small.png)
 
 ## Dependencies
-The backend is written in Node.js and uses Express 4.17 with a body-parser middleware. The database is MongoDB and in the application I use mongodb@3.5.5. The frontend is made using Marko@4.19 just because it was the fastest framework I was able to learn. I tried to use React and Vue but I couldn't do what I needed, with Marko.js it was relatively easy (I also have a friend named Marko so... :D). The application uses random@2.2 for the cards drawing and uuid@7.0 for generating the IDs of the players.
+The backend is written in Node.js and uses Express 4.17 with a body-parser middleware. The database is MongoDB and in the application I use mongodb@3.5.5. The frontend is made using Marko@4.19 just because it was the fastest framework I was able to learn. I tried to use React and Vue but I couldn't do what I needed, with Marko.js it was relatively easy (I also have a friend named Marko so... :D). The application uses random@2.2 for the cards drawing and uuid@7.0 for the IDs of the players.
 
 ## Building and deployment
 
