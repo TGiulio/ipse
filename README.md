@@ -1,7 +1,7 @@
 # ipse
 ipse is a very simple version of the Dixit game that I made during the lockdown in February and March 2020 to play with my friends.
 
-It is my first "full-stack" application written in Node.js, even if it's really simple, and it was the first time I used a MongoDB database. It's really a basic application, it does not support account management, the cleaning of the player collection must be done manually. It does not have data validation of any sort, if a field is empty the application will go on anyway. At the time it was mostly a proof of concept, to learn Node.js and his environment, and to play with my friends.
+It is my first "full-stack" application written in Node.js, even if it's really simple, and it was the first time I used a MongoDB database. It's really a basic application, it does not support account management, the cleaning of the player collection must be done manually, it does not have data validation of any sort. At the time it was mostly a proof of concept, to learn Node.js and its environment, and to play with my friends.
 
 The Dixit game is not my creation and I don't own any copyright of the game or the cards shown below. Dixit is an [Asmodee](https://www.asmodee.com) board game.
 
